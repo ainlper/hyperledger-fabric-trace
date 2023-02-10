@@ -1,4 +1,8 @@
 package com.xinyu.traceserver.fabric;
+/**
+ * FabricClient
+ * 创建channel
+ */
 
 import org.hyperledger.fabric.sdk.*;
 import org.hyperledger.fabric.sdk.exception.CryptoException;
@@ -22,43 +26,46 @@ public class FabricClient {
     private HFClient hfClient;
 
     public FabricClient(UserContext userContext) throws IllegalAccessException, InvocationTargetException, InvalidArgumentException, InstantiationException, NoSuchMethodException, CryptoException, ClassNotFoundException {
+//        实例化
         hfClient = HFClient.createNewInstance();
+//        定义加密算法
         CryptoSuite cryptoSuite = CryptoSuite.Factory.getCryptoSuite();
+//        设置加密算法
         hfClient.setCryptoSuite(cryptoSuite);
+//        设置用户环境变量
         hfClient.setUserContext(userContext);
-
     }
 
-    //创建channel
-    public void createChannel(String channelName, Orderer order, String txPath) throws IOException, InvalidArgumentException, TransactionException {
+    //   创建channel
+    public Channel createChannel(String channelName, Orderer order, String txPath) throws IOException, InvalidArgumentException, TransactionException {
         ChannelConfiguration channelConfiguration = new ChannelConfiguration(new File(txPath));
-        hfClient.newChannel(channelName, order, channelConfiguration, hfClient.getChannelConfigurationSignature(channelConfiguration, hfClient.getUserContext()));
+        return hfClient.newChannel(channelName, order, channelConfiguration, hfClient.getChannelConfigurationSignature(channelConfiguration, hfClient.getUserContext()));
     }
 
-    //得到orderer节点
+    // 创建Orderer
     public Orderer getOrderer(String name, String grpcUrl, String tlsFilePath) throws InvalidArgumentException {
-        Properties preperties = new Properties();
-        preperties.setProperty("pemFile", tlsFilePath);
+        Properties properties = new Properties();
+        properties.setProperty("pemFile", tlsFilePath);
 
-        Orderer orderer = hfClient.newOrderer(name, grpcUrl, preperties);
+        Orderer orderer = hfClient.newOrderer(name, grpcUrl, properties);
         return orderer;
     }
 
-    //得到peer节点
+    // 得到peer节点
     public Peer getPeer(String name, String grpcUrl, String tlsFilePath) throws InvalidArgumentException {
-        Properties preperties = new Properties();
-        preperties.setProperty("pemFile", tlsFilePath);
-        Peer peer = hfClient.newPeer(name, grpcUrl, preperties);
+        Properties properties = new Properties();
+        properties.setProperty("pemFile", tlsFilePath);
+        Peer peer = hfClient.newPeer(name, grpcUrl, properties);
         return peer;
     }
 
-    //获得channel
-    public Channel getChannel(String channelName) throws TransactionException, InvalidArgumentException {
-        Channel test = hfClient.newChannel(channelName);
-        return test;
+    //  获取channel
+    public Channel getChannel(String channelName) throws InvalidArgumentException {
+        Channel channel = hfClient.newChannel(channelName);
+        return channel;
     }
 
-    //安装合约
+    //  安装合约
     public void installChaincode(TransactionRequest.Type lang, String chaincodeName, String chaincodeVersion, String chaincodeLocation, String chaincodePath, List<Peer> peers) throws InvalidArgumentException, ProposalException {
         InstallProposalRequest installProposalRequest = hfClient.newInstallProposalRequest();
         ChaincodeID.Builder builder = ChaincodeID.newBuilder().setName(chaincodeName).setVersion(chaincodeVersion);

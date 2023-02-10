@@ -8,18 +8,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 class TraceRepositoryTest {
     @Autowired
     private TraceRepository traceRepository;
+
     @Test
-    void register(){
+    void register() {
         System.out.println(traceRepository.findAll());
     }
 
     @Test
-    void findoone(){
+    void findoone() {
         System.out.println(traceRepository.findById(12));
     }
 
     @Test
-    void findAll(){
+    void findAll() {
         System.out.println(traceRepository.findAll());
     }
 }

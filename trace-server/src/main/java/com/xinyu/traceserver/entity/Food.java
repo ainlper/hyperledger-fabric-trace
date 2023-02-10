@@ -12,9 +12,9 @@ import javax.persistence.Id;
 public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Integer id;
-    private  String name;
-    private  String password;
-    private  String registration_type;
+    private Integer id;
+    private String name;
+    private String password;
+    private String registration_type;
 
 }

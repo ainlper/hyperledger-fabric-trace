@@ -1,4 +1,7 @@
 package com.xinyu.traceserver.fabric;
+/**
+ * 定义用户对象
+ */
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.hyperledger.fabric.sdk.Enrollment;
@@ -8,20 +11,25 @@ import java.io.Serializable;
 import java.security.Security;
 import java.util.Set;
 
-public class UserContext implements User , Serializable {
+public class UserContext implements User, Serializable {
 
+    //    用户名称
     private String name;
-    
+
+    //    用户决策
     private Set<String> roles;
 
+    //    账户
     private String account;
 
+    //    组织机构
     private String affiliation;
 
     private Enrollment enrollment;
 
-    private  String mspId;
+    private String mspId;
 
+    //    加密算法
     static {
         Security.addProvider(new BouncyCastleProvider());
     }

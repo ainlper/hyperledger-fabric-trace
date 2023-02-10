@@ -37,7 +37,7 @@ import java.util.Map;
 public class TraceHandler {
 
     private static final String keyFolderPath = "G:\\hyperledger-fabric-trace\\trace-server\\src\\main\\resources\\crypto-config\\peerOrganizations\\org1.example.com\\users\\Admin@org1.example.com\\msp\\keystore";
-    private static final String keyFileName = "d8e904429030eaf41c2a9eb24c67b9a3b65839cdb8201b61e86f858c8e7e22a7_sk";
+    private static final String keyFileName = "e047a9f357d7bbbd491f1b5b8ea8a359dca39073e0d80d9dce997470231d5860_sk";
     private static final String certFoldePath = "G:\\hyperledger-fabric-trace\\trace-server\\src\\main\\resources\\crypto-config\\peerOrganizations\\org1.example.com\\users\\Admin@org1.example.com\\msp\\signcerts";
     private static final String certFileName = "Admin@org1.example.com-cert.pem";
     private static final String txfilePath = "G:\\hyperledger-fabric-trace\\trace-server\\src\\main\\resources\\test.tx";

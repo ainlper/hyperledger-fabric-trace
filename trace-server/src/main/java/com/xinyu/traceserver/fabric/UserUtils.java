@@ -1,4 +1,7 @@
 package com.xinyu.traceserver.fabric;
+/**
+ * 将磁盘中证书文件的的Key以及证书转化到代码里
+ */
 
 import org.bouncycastle.crypto.CryptoException;
 import org.hyperledger.fabric.sdk.Enrollment;
@@ -15,13 +18,17 @@ import java.security.spec.PKCS8EncodedKeySpec;
 
 public class UserUtils {
 
-   private static class CAEnrollment implements Enrollment{
+    private static class CAEnrollment implements Enrollment {
+        //        Key
         private PrivateKey key;
+        //        证书
         private String ecert;
-        public CAEnrollment(PrivateKey key,String ecert) {
+
+        public CAEnrollment(PrivateKey key, String ecert) {
             this.key = key;
             this.ecert = ecert;
         }
+
         @Override
         public PrivateKey getKey() {
             return key;
@@ -62,6 +69,6 @@ public class UserUtils {
             isKey.close();
             brKey.close();
         }
-       return new CAEnrollment(key, certificate);
+        return new CAEnrollment(key, certificate);
     }
 }

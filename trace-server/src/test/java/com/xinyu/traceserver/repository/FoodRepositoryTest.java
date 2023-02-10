@@ -11,18 +11,18 @@ class FoodRepositoryTest {
     private FoodRepository foodRepository;
 
     @Test
-    void register(){
+    void register() {
         System.out.println(foodRepository.findAll());
     }
 
     @Test
-    void findoone(){
+    void findoone() {
 
         System.out.println(foodRepository.findById(12));
     }
 
     @Test
-    void save(){
+    void save() {
         Food food = new Food();
         food.setName("vvv");
         food.setPassword("vvv");
